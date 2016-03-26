@@ -1,0 +1,26 @@
+{
+  "name": "notice-board",
+  "version": "0.0.1",
+  "description": "A play notice board.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lkoudstaal/notice-board.git"
+  },
+  "author": "lauriekoudstaal,matthewwalters",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lkoudstaal/notice-board/issues"
+  },
+  "homepage": "https://github.com/lkoudstaal/notice-board#readme"
+}
