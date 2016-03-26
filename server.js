@@ -12,20 +12,23 @@ app.set('port', (process.env.PORT || 3000));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-var insertDocument = function(db, callback) {
-    db.collection('notices').insertOne({
-        "body" : "A notice body."
-    }, function(err, result) {
-        assert.equal(err, null);
-        console.log("Inserted a notice board item into the notices collection.");
-        callback();
-    });
+var insertDocument = function(notice, db, callback) {
+    db.collection('notices').insertOne(
+        notice, function(err, result) {
+            assert.equal(err, null);
+            console.log("Inserted a notice board item into the notices collection.");
+            callback();
+        });
 };
 
-MongoClient.connect(url, function(err, db) {
-    assert.equal(err, null);
-    insertDocument(db, function() {
-        db.close();
+app.post('/api/notice', function(req, res) {
+    // TODO: Check that req.body is a valid notice. 
+    MongoClient.connect(url, function(err, db) {
+        assert.equal(err, null);
+        insertDocument(req.body, db, function() {
+            db.close();
+            res.status(200).send("OK");
+        });
     });
 });
 
