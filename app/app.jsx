@@ -1,4 +1,4 @@
-var NoticeBox = React.createClass({displayName: 'NoticeBox',
+var NoticeForm = React.createClass({displayName: 'NoticeForm',
   getInitialState: function() {
     return {value: ''};
   },
@@ -22,6 +22,6 @@ var NoticeBox = React.createClass({displayName: 'NoticeBox',
   }
 });
 ReactDOM.render(
-    React.createElement(NoticeBox, null),
+    React.createElement(NoticeForm, null),
     document.getElementById('content')
 );
