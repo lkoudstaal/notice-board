@@ -10,7 +10,7 @@
     // optimisations.
     database.getDb = function(next) {
         if (theDb) {
-            next(null, db);
+            next(null, theDb);
         } else {
             mongodb.MongoClient.connect(mongoUrl, function(err, db) {
                 if (err) {
