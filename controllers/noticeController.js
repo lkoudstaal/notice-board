@@ -13,7 +13,6 @@
 
         app.get('/api/notices', function(req, res) {
             findNotices(database, function(results) {
-                console.log('get requested');
                 res.status(200).send(results);
             })
         });
@@ -25,7 +24,6 @@
                     notice,
                     function(err, result) {
                         assert.equal(err, null);
-                        console.log("Inserted a notice item.");
                         callback();
                     });
             });
@@ -35,7 +33,6 @@
             database.getDb(function(err, db) {
                 assert.equal(err, null);
                 var results = db.notices.find().toArray(function(err, result) {
-                    console.log(result);
                     callback(result);
                 });
             });
