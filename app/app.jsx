@@ -23,8 +23,8 @@ var NoticeBoard = React.createClass({
         return (
             <div className="noticeBoard">
                 <h1>Noticeboard</h1>
-                <NoticeList data={this.state.data}/>
                 <NoticeForm/>
+                <NoticeList data={this.state.data}/>
             </div>);
     }
 })
@@ -72,7 +72,7 @@ var NoticeForm = React.createClass({displayName: "NoticeForm",
   },
   render: function() {
       return (
-          <div>
+          <div className="noticeForm">
               <textarea
                   value={this.state.value}
                   onChange={this.handleChange}/>
