@@ -1,17 +1,7 @@
 var NoticeBoard = React.createClass({
-    displayName: "NoticeBoard",
-    getInitialState: function() {
-        return { data: [] }
-    },
-    // componentDidMount: function() {
-    //     $.get("http://localhost:3000/api/notices", {}, function(data) {
-    //         console.log(data);
-    //         this.setState({ data: data });
-    //     }.bind(this));
-    // },
-    componentDidMount: function() {
+    loadNoticesFromServer: function() {
         $.ajax({
-            url: "api/notices",
+            url: this.props.url,
             dataType: 'json',
             cache: false,
             success: function(data) {
@@ -21,6 +11,13 @@ var NoticeBoard = React.createClass({
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
+    },
+    getInitialState: function() {
+        return { data: [] }
+    },
+    componentDidMount: function() {
+        this.loadNoticesFromServer();
+        setInterval(this.loadNoticesFromServer, this.props.pollInterval);
     },
     render: function() {
         return (
@@ -84,6 +81,6 @@ var NoticeForm = React.createClass({displayName: "NoticeForm",
   }
 });
 ReactDOM.render(
-    React.createElement(NoticeBoard, null),
+    <NoticeBoard url="api/notices" pollInterval={2000} />,
     document.getElementById("content")
 );
