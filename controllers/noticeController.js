@@ -1,6 +1,8 @@
 (function(noticeController) {
 
     var assert = require('assert');
+    var dateFormat = require('dateformat');
+    var mongodb = require('mongodb');
 
     noticeController.init = function(app, database) {
 
@@ -32,8 +34,15 @@
         var findNotices = function(database, callback) {
             database.getDb(function(err, db) {
                 assert.equal(err, null);
-                var results = db.notices.find().toArray(function(err, result) {
-                    callback(result);
+                db.notices.find().sort({ _id: -1 }).toArray(function(err, result) {
+                    var transformedResult = result.map(function(obj) {
+                        var tObj = {};
+                        tObj._id = obj._id;
+                        tObj.body = obj.body;
+                        tObj.createdAt = dateFormat(mongodb.ObjectId(obj._id).getTimestamp(), "ddd, d mmm yyyy, h:MM TT");
+                        return tObj
+                    });
+                    callback(transformedResult);
                 });
             });
         };

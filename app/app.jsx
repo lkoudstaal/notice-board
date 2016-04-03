@@ -34,7 +34,8 @@ var NoticeList = React.createClass({
         var noticeNodes = this.props.data.map(function(notice) {
             return (
                 <Notice key={notice._id}>
-                    {notice.body}
+                    <div>{notice.createdAt}</div>
+                    <div>{notice.body}</div>
                 </Notice>
             );
         });
