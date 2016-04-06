@@ -1,0 +1,24 @@
+{
+  "name": "notice-board",
+  "description": "A play notice board.",
+  "main": "server.js",
+  "authors": [
+    "lauriekoudstaal",
+    "matthewwalters"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/lkoudstaal/notice-board",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "react": "^0.14.8"
+  }
+}
