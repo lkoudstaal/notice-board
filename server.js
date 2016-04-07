@@ -9,8 +9,9 @@ app.use('/', express.static('app'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Set the public static resource folder
+// Include static resource folders.
 app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/bower_components"));
 
 // Additional middleware which will set headers that we need on each request.
 app.use(function(req, res, next) {

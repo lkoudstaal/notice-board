@@ -24,8 +24,8 @@ coverage
 build/Release
 
 # Dependency directory
+bower_components
 node_modules
-public/lib
 
 # Optional npm cache directory
 .npm
