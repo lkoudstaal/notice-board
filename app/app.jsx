@@ -34,8 +34,14 @@ var NoticeList = React.createClass({
         var noticeNodes = this.props.data.map(function(notice) {
             return (
                 <Notice key={notice._id}>
-                    <div>{notice.createdAt}</div>
-                    <div>{notice.body}</div>
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            <div>{notice.createdAt}</div>
+                        </div>
+                        <div className="panel-body">
+                            <div>{notice.body}</div>
+                        </div>
+                    </div>
                 </Notice>
             );
         });
@@ -74,10 +80,14 @@ var NoticeForm = React.createClass({displayName: "NoticeForm",
   render: function() {
       return (
           <div className="noticeForm">
+          <div>
               <textarea
                   value={this.state.value}
                   onChange={this.handleChange}/>
+                  </div>
+                  <div>
               <button onClick={this.postNotice}>Submit</button>
+              </div>
           </div>);
   }
 });
