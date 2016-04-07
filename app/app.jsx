@@ -36,7 +36,7 @@ var NoticeList = React.createClass({
                 <Notice key={notice._id}>
                     <div className="panel panel-default">
                         <div className="panel-heading">
-                            <div>{notice.createdAt}</div>
+                            <div className="text-right"><small>{notice.createdAt}</small></div>
                         </div>
                         <div className="panel-body">
                             <div>{notice.body}</div>
@@ -79,15 +79,20 @@ var NoticeForm = React.createClass({displayName: "NoticeForm",
   },
   render: function() {
       return (
-          <div className="noticeForm">
           <div>
-              <textarea
-                  value={this.state.value}
-                  onChange={this.handleChange}/>
+              <form role="form">
+                  <div className="form-group">
+                      <label for="newNotice">New Notice:</label>
+                      <textarea
+                          id="newNotice"
+                          value={this.state.value}
+                          onChange={this.handleChange}
+                          className="form-control"/>
                   </div>
-                  <div>
-              <button onClick={this.postNotice}>Submit</button>
-              </div>
+                  <div className="form-group">
+                      <button className="btn btn-default" onClick={this.postNotice}>Post Notice</button>
+                  </div>
+              </form>
           </div>);
   }
 });
