@@ -6,6 +6,10 @@
 
     noticeController.init = function(app, database) {
 
+        app.get('/', function(req, res) {
+            res.sendFile(__dirname + '/app/index.html');
+        });
+
         app.post('/api/notice', function(req, res) {
             // TODO: Check that req.body is a valid notice.
             insertNotice(req.body, database, function() {

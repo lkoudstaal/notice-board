@@ -5,11 +5,11 @@ var controllers = require("./controllers");
 var app = express();
 
 app.set('port', (process.env.PORT || 3000));
-app.use('/', express.static('app'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Include static resource folders.
+app.use(express.static(__dirname + "/app"));
 app.use(express.static(__dirname + "/public"));
 
 // Additional middleware which will set headers that we need on each request.
