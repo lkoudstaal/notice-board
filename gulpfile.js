@@ -29,4 +29,4 @@ gulp.task('startNodeServer', function() {
     });
 });
 
-var watcher = gulp.watch(['server.js', 'app/*.jsx', 'data/*.js', 'controllers/*.js'], ['startServer']);
+var watcher = gulp.watch(['server.js', 'app/*.jsx', 'data/*.js', 'controllers/*.js'], ['startNodeServer']);
