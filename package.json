@@ -21,7 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/lkoudstaal/notice-board.git"
   },
-  "author": "lauriekoudstaal,matthewwalters",
+  "author": "andrewkoudstaal,lauriekoudstaal,matthewwalters",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lkoudstaal/notice-board/issues"
