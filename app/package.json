@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "matthewwalters,lauriekoudstaal",
+    "author": "andrewkoudstaal,lauriekoudstaal,matthewwalters",
     "license": "ISC",
     "dependencies": {
         "babel-core": "^6.7.6",
