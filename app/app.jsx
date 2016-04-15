@@ -1,25 +1,25 @@
 var NoticeBoard = React.createClass({
-    loadNoticesFromServer: function() {
+    loadNoticesFromServer: function () {
         $.ajax({
             url: this.props.url,
             dataType: 'json',
             cache: false,
-            success: function(data) {
+            success: function (data) {
                 this.setState({ data: data });
             }.bind(this),
-            error: function(xhr, status, err) {
+            error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
     },
-    getInitialState: function() {
+    getInitialState: function () {
         return { data: [] }
     },
-    componentDidMount: function() {
+    componentDidMount: function () {
         this.loadNoticesFromServer();
         setInterval(this.loadNoticesFromServer, this.props.pollInterval);
     },
-    render: function() {
+    render: function () {
         return (
             <div className="noticeBoard">
                 <h1>Noticeboard</h1>
@@ -30,8 +30,8 @@ var NoticeBoard = React.createClass({
 })
 
 var NoticeList = React.createClass({
-    render: function() {
-        var noticeNodes = this.props.data.map(function(notice) {
+    render: function () {
+        var noticeNodes = this.props.data.map(function (notice) {
             return (
                 <Notice key={notice._id}>
                     <div className="panel panel-default">
@@ -55,46 +55,47 @@ var NoticeList = React.createClass({
 });
 
 var Notice = React.createClass({
-  render: function() {
-    return (
-      <div className="notice">
-        {this.props.children}
-      </div>
-    );
-  }
+    render: function () {
+        return (
+            <div className="notice">
+                {this.props.children}
+            </div>
+        );
+    }
 });
 
-var NoticeForm = React.createClass({displayName: "NoticeForm",
-  getInitialState: function() {
-    return { value: "" };
-  },
-  handleChange: function(event) {
-    this.setState({value: event.target.value});
-  },
-  postNotice: function() {
+var NoticeForm = React.createClass({
+    displayName: "NoticeForm",
+    getInitialState: function () {
+        return { value: "" };
+    },
+    handleChange: function (event) {
+        this.setState({ value: event.target.value });
+    },
+    postNotice: function () {
         var notice = { body: this.state.value }
         $.post("http://localhost:3000/api/notice",
             notice,
-            function() { console.log("Success"); });
-  },
-  render: function() {
-      return (
-          <div>
-              <form role="form">
-                  <div className="form-group">
-                      <label for="newNotice">New Notice:</label>
-                      <textarea
-                          id="newNotice"
-                          value={this.state.value}
-                          onChange={this.handleChange}
-                          className="form-control"/>
-                  </div>
-                  <div className="form-group">
-                      <button className="btn btn-default" onClick={this.postNotice}>Post Notice</button>
-                  </div>
-              </form>
-          </div>);
-  }
+            function () { console.log("Success"); });
+    },
+    render: function () {
+        return (
+            <div>
+                <form role="form">
+                    <div className="form-group">
+                        <label for="newNotice">New Notice: </label>
+                        <textarea
+                            id="newNotice"
+                            value={this.state.value}
+                            onChange={this.handleChange}
+                            className="form-control"/>
+                    </div>
+                    <div className="form-group">
+                        <button className="btn btn-default" onClick={this.postNotice}>Post Notice</button>
+                    </div>
+                </form>
+            </div>);
+    }
 });
 ReactDOM.render(
     <NoticeBoard url="api/notices" pollInterval={2000} />,

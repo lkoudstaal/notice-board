@@ -1,4 +1,4 @@
-(function(database) {
+(function (database) {
 
     var mongodb = require("mongodb");
     var mongoUrl = 'mongodb://localhost:27017/notice-board';
@@ -8,15 +8,15 @@
     // Keep database connection open and return the same database 
     // connection to subsequent callers to enable connection pooling 
     // optimisations.
-    database.getDb = function(next) {
+    database.getDb = function (next) {
         if (theDb) {
             next(null, theDb);
         } else {
-            mongodb.MongoClient.connect(mongoUrl, function(err, db) {
+            mongodb.MongoClient.connect(mongoUrl, function (err, db) {
                 if (err) {
                     next(err, null);
                 } else {
-                    theDb = { 
+                    theDb = {
                         db: db,
                         notices: db.collection("notices")
                     };

@@ -8,23 +8,23 @@ var mongod;
 
 gulp.task('default', ['startDatabaseServer', 'startNodeServer']);
 
-gulp.task('startDatabaseServer', function() {
+gulp.task('startDatabaseServer', function () {
     mongod = spawn('mongod', ['--config', '/usr/local/etc/mongod.conf']);
-    mongod.stdout.on('data', function(data) {
+    mongod.stdout.on('data', function (data) {
         console.log('mongod.stdout: ' + data);
     });
-    mongod.stderr.on('data', function(data) {
+    mongod.stderr.on('data', function (data) {
         console.log('mongod.stderr: ' + data);
     });
 })
 
-gulp.task('startNodeServer', function() {
+gulp.task('startNodeServer', function () {
     if (node) node.kill();
     node = spawn('node', ['server.js']);
-    node.stdout.on('data', function(data) {
+    node.stdout.on('data', function (data) {
         console.log('node.stdout: ' + data);
     });
-    node.stderr.on('data', function(data) {
+    node.stderr.on('data', function (data) {
         console.log('node.stderr: ' + data);
     });
 });
