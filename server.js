@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Include static resource folders.
 app.use(express.static(__dirname + "/app"));
-app.use(express.static(__dirname + "/public"));
 
 // Additional middleware which will set headers that we need on each request.
 app.use(function (req, res, next) {
