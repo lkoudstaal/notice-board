@@ -1,8 +1,12 @@
 var NoticeBoard = React.createClass({
+    propTypes: {
+        url: React.PropTypes.string.isRequired,
+        pollInterval: React.PropTypes.number.isRequired
+    },
     loadNoticesFromServer: function () {
         $.ajax({
             url: this.props.url,
-            dataType: 'json',
+            dataType: "json",
             cache: false,
             success: function (data) {
                 this.setState({ data: data });
@@ -13,7 +17,7 @@ var NoticeBoard = React.createClass({
         });
     },
     getInitialState: function () {
-        return { data: [] }
+        return { data: [] };
     },
     componentDidMount: function () {
         this.loadNoticesFromServer();
@@ -27,9 +31,12 @@ var NoticeBoard = React.createClass({
                 <NoticeList data={this.state.data}/>
             </div>);
     }
-})
+});
 
 var NoticeList = React.createClass({
+    propTypes: {
+        data: React.PropTypes.array.isRequired
+    },
     render: function () {
         var noticeNodes = this.props.data.map(function (notice) {
             return (
@@ -55,6 +62,9 @@ var NoticeList = React.createClass({
 });
 
 var Notice = React.createClass({
+    propTypes: {
+        children: React.PropTypes.object
+    },
     render: function () {
         return (
             <div className="notice">
@@ -73,17 +83,17 @@ var NoticeForm = React.createClass({
         this.setState({ value: event.target.value });
     },
     postNotice: function () {
-        var notice = { body: this.state.value }
+        var notice = { body: this.state.value };
         $.post("http://localhost:3000/api/notice",
-            notice,
-            function () { console.log("Success"); });
+               notice,
+               function () { console.log("Success"); });
     },
     render: function () {
         return (
             <div>
                 <form role="form">
                     <div className="form-group">
-                        <label for="newNotice">New Notice: </label>
+                        <label htmlFor="newNotice">New Notice: </label>
                         <textarea
                             id="newNotice"
                             value={this.state.value}

@@ -1,9 +1,9 @@
 module.exports = {
     "env": {
-        "browser": true,
-        "es6": true
+        "es6": true,
+        "browser": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
@@ -12,8 +12,11 @@ module.exports = {
     },
     "plugins": [
         "react"
-    ],
+    ,],
     "rules": {
+        "no-undef": 0, // FIXME: many React componenets are undefined
+        "react/react-in-jsx-scope": 0, // FIXME: React doesn't seem to be in scope correctly
+        "no-console": 0, // TODO: remove this for production
         "indent": [
             "error",
             4
