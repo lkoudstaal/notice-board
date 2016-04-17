@@ -4,14 +4,14 @@
     "description": "A play notice board.",
     "main": "server.js",
     "dependencies": {
-        "assert": "^1.3.0",
-        "body-parser": "^1.15.0",
-        "dateformat": "^1.0.12",
-        "express": "^4.13.4",
-        "mongodb": "^2.1.11"
+        "assert": "*",
+        "body-parser": "*",
+        "dateformat": "*",
+        "express": "*",
+        "mongodb": "*"
     },
     "devDependencies": {
-        "gulp": "^3.9.1"
+        "gulp": "*"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
