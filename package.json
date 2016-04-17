@@ -1,30 +1,35 @@
 {
-    "name": "notice-board",
-    "version": "0.0.1",
-    "description": "A play notice board.",
-    "main": "server.js",
-    "dependencies": {
-        "assert": "*",
-        "body-parser": "*",
-        "dateformat": "*",
-        "express": "*",
-        "mongodb": "*"
-    },
-    "devDependencies": {
-        "gulp": "*"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/lkoudstaal/notice-board.git"
-    },
-    "author": "andrewkoudstaal,lauriekoudstaal,matthewwalters",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/lkoudstaal/notice-board/issues"
-    },
-    "homepage": "https://github.com/lkoudstaal/notice-board#readme"
+  "name": "notice-board",
+  "version": "0.0.1",
+  "description": "A play notice board.",
+  "main": "server.js",
+  "dependencies": {
+    "assert": "*",
+    "body-parser": "*",
+    "dateformat": "*",
+    "express": "*",
+    "mongodb": "*"
+  },
+  "devDependencies": {
+    "eslint": "^2.8.0",
+    "eslint-config-airbnb": "^7.0.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
+    "eslint-plugin-react": "^4.3.0",
+    "gulp": "*",
+    "gulp-eslint": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lkoudstaal/notice-board.git"
+  },
+  "author": "andrewkoudstaal,lauriekoudstaal,matthewwalters",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lkoudstaal/notice-board/issues"
+  },
+  "homepage": "https://github.com/lkoudstaal/notice-board#readme"
 }

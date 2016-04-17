@@ -4,10 +4,11 @@ var gulp = require('gulp');
 var spawn = require('child_process').spawn;
 var node;
 var mongod;
+var eslint = require('gulp-eslint');
 
 gulp.task('default', ['startDatabaseServer', 'startNodeServer']);
 
-gulp.task('startDatabaseServer', function () {
+gulp.task('startDatabaseServer', ['lint'], function () {
     mongod = spawn('mongod', ['--config', '/usr/local/etc/mongod.conf']);
     mongod.stdout.on('data', function (data) {
         console.log('mongod.stdout: ' + data);
@@ -17,7 +18,7 @@ gulp.task('startDatabaseServer', function () {
     });
 })
 
-gulp.task('startNodeServer', function () {
+gulp.task('startNodeServer', ['lint'],  function () {
     if (node) node.kill();
     node = spawn('node', ['server.js']);
     node.stdout.on('data', function (data) {
@@ -26,6 +27,13 @@ gulp.task('startNodeServer', function () {
     node.stderr.on('data', function (data) {
         console.log('node.stderr: ' + data);
     });
+});
+
+gulp.task('lint', function() {
+    return gulp.src(['app/*.jsx','!node_modules/**'])
+	.pipe(eslint())
+	.pipe(eslint.format())
+	.pipe(eslint.failAfterError());
 });
 
 var watcher = gulp.watch(['server.js', 'app/*.jsx', 'data/*.js', 'controllers/*.js'], ['startNodeServer']);
