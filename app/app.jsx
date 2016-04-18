@@ -38,24 +38,11 @@ var NoticeList = React.createClass({
         data: React.PropTypes.array.isRequired
     },
     render: function () {
-        var noticeNodes = this.props.data.map(function (notice) {
-            return (
-                <Notice key={notice._id}>
-                    <div className="panel panel-default">
-                        <div className="panel-heading">
-                            <div className="text-right"><small>{notice.createdAt}</small></div>
-                        </div>
-                        <div className="panel-body">
-                            <div>{notice.body}</div>
-                        </div>
-                    </div>
-                </Notice>
-            );
-        });
-
         return (
             <div className="noticeList">
-                {noticeNodes}
+                {this.props.data.map(function (notice) {
+                    return <Notice key={notice._id} data={notice}/>;
+                })}
             </div>
         );
     }
@@ -63,12 +50,21 @@ var NoticeList = React.createClass({
 
 var Notice = React.createClass({
     propTypes: {
-        children: React.PropTypes.object
+        data: React.PropTypes.object.isRequired
     },
     render: function () {
         return (
             <div className="notice">
-                {this.props.children}
+                <div className="panel panel-default">
+                    <div className="panel-heading">
+                        <div className="text-right">
+                            <small>{this.props.data.createdAt}</small>
+                        </div>
+                    </div>
+                    <div className="panel-body">
+                        <div>{this.props.data.body}</div>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -85,8 +81,8 @@ var NoticeForm = React.createClass({
     postNotice: function () {
         var notice = { body: this.state.value };
         $.post("http://localhost:3000/api/notice",
-               notice,
-               function () { console.log("Success"); });
+            notice,
+            function () { console.log("Success"); });
     },
     render: function () {
         return (
