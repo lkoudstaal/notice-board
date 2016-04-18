@@ -78,18 +78,17 @@ var NoticeForm = React.createClass({
     handleChange: function (event) {
         this.setState({ value: event.target.value });
     },
-    postNotice: function () {
-        var notice = { body: this.state.value };
-        $.post("http://localhost:3000/api/notice",
-            notice,
-            function () { console.log("Success"); });
+    handleSubmit: function (event) {
+        event.preventDefault();
+        $.post("http://localhost:3000/api/notice", { body: this.state.value });
+        this.setState({ value: "" });
     },
     render: function () {
         return (
             <div>
-                <form role="form">
+                <form role="form" onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="newNotice">New Notice: </label>
+                        <label htmlFor="newNotice">New Notice:</label>
                         <textarea
                             id="newNotice"
                             value={this.state.value}
@@ -97,7 +96,7 @@ var NoticeForm = React.createClass({
                             className="form-control"/>
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-default" onClick={this.postNotice}>Post Notice</button>
+                        <button className="btn btn-default">Post Notice</button>
                     </div>
                 </form>
             </div>);
